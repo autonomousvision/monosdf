@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="">
-    <img src="./media/teaser.gif" alt="Logo" width="70%">
+    <img src="./media/teaser.gif" alt="Logo" width="95%">
   </a>
 </p>
 
