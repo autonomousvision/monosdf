@@ -286,11 +286,6 @@ class ImplicitNetworkGrid(nn.Module):
         x.requires_grad_(True)
         output = self.forward(x)
         sdf = output[:,:1]
-        #TODO make optional
-        ''' Clamping the SDF with the scene bounding sphere, so that all rays are eventually occluded '''
-        if self.sdf_bounding_sphere > 0.0:
-            sphere_sdf = self.sphere_scale * (self.sdf_bounding_sphere - x.norm(2,1, keepdim=True))
-            sdf = torch.minimum(sdf, sphere_sdf)
 
         feature_vectors = output[:, 1:]
         d_output = torch.ones_like(sdf, requires_grad=False, device=sdf.device)
@@ -306,11 +301,6 @@ class ImplicitNetworkGrid(nn.Module):
 
     def get_sdf_vals(self, x):
         sdf = self.forward(x)[:,:1]
-        #TODO make optional
-        ''' Clamping the SDF with the scene bounding sphere, so that all rays are eventually occluded '''
-        if self.sdf_bounding_sphere > 0.0:
-            sphere_sdf = self.sphere_scale * (self.sdf_bounding_sphere - x.norm(2,1, keepdim=True))
-            sdf = torch.minimum(sdf, sphere_sdf)
         return sdf
 
     def mlp_parameters(self):

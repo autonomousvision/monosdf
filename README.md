@@ -13,6 +13,7 @@
     <a href="http://www.cvlibs.net/">Andreas Geiger</a>
 
   </p>
+  <h2 align="center">NeurIPS 2022</h2>
   <h3 align="center"><a href="https://arxiv.org/abs/2206.00665">Paper</a> | <a href="https://niujinshuchong.github.io/monosdf/">Project Page</a></h3>
   <div align="center"></div>
 </p>
