@@ -131,18 +131,23 @@ please check the script for more details.
 You need to submit the reconstruction results to the [official evaluation server](https://www.tanksandtemples.org), please follow their guidance. We also provide an example of our submission [here](https://drive.google.com/file/d/1Cr-UVTaAgDk52qhVd880Dd8uF74CzpcB/view?usp=sharing) for reference.
 
 # Custom dataset
-We provide an example of how to preprocess scannet to monosdf format. First, run the script to subsample training images, normalize camera poses, and etc.
+We provide an example of how to train monosdf on custom data (Apartment scene from nice-slam). First, download the dataset and run the script to subsample training images, normalize camera poses, and etc.
 ```
+bash scripts/download_apartment.sh 
 cd preprocess
-python scannet_to_monosdf.py
+python nice_slam_apartment_to_monosdf.py
 ```
 
 Then, we can extract monocular depths and normals (please install [omnidata model](https://github.com/EPFL-VILAB/omnidata) before running the command):
 ```
-python extract_monocular_cues.py --task depth --img_path ../data/custom/scan1 --output_path ../data/custom/scan1 --omnidata_path YOUR_OMNIDATA_PATH --pretrained_models PRETRAINED_MODELS
-python extract_monocular_cues.py --task normal --img_path ../data/custom/scan1 --output_path ../data/custom/scan1 --omnidata_path YOUR_OMNIDATA_PATH --pretrained_models PRETRAINED_MODELS
+python extract_monocular_cues.py --task depth --img_path ../data/Apartment/scan1/image --output_path ../data/Apartment/scan1 --omnidata_path YOUR_OMNIDATA_PATH --pretrained_models PRETRAINED_MODELS
+python extract_monocular_cues.py --task normal --img_path ../data/Apartment/scan1/image --output_path ../data/Apartment/scan1 --omnidata_path YOUR_OMNIDATA_PATH --pretrained_models PRETRAINED_MODELS
 ```
 
+Finally, we train monosdf as
+```
+CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node 1 --nnodes=1 --node_rank=0 training/exp_runner.py --conf confs/nice_slam_grids.conf
+```
 
 # Acknowledgements
 This project is built upon [VolSDF](https://github.com/lioryariv/volsdf). We use pretrained [Omnidata](https://omnidata.vision) for monocular depth and normal extraction. Cuda implementation of Multi-Resolution hash encoding is based on [torch-ngp](https://github.com/ashawkey/torch-ngp). Evaluation scripts for DTU, Replica, and ScanNet are taken from [DTUeval-python](https://github.com/jzhangbs/DTUeval-python), [Nice-SLAM](https://github.com/cvg/nice-slam) and [manhattan-sdf](https://github.com/zju3dv/manhattan_sdf) respectively. We thank all the authors for their great work and repos. 
