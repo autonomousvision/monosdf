@@ -59,6 +59,6 @@ for conf, checkpoint, scan_id, resolution, out_folder in zip(confs, checkpoints,
     os.system(cmd)
 
 # highresTNT, only need to match the architecture and grid boundary when extract mesh
-cmd = f"cd code && python evaluation/eval.py --conf confs/tnt_grids_1.conf --checkpoint ../pretrained_models/tnt_highres/Courtroom.pth --scan_id 1 --resolution 512 --evals_folder ../meshes/tnt_highres/"
+cmd = f"cd code && python evaluation/eval.py --conf confs/tnt_grids_1.conf --checkpoint ../pretrained_models/tnt_highres/Courtroom.pth --scan_id 1 --resolution 4096 --evals_folder ../meshes/tnt_highres/"
 print(cmd)
 os.system(cmd)
