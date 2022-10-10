@@ -81,13 +81,13 @@ def evaluate(**kwargs):
             mesh.apply_transform(scale_mat)
 
         # Taking the biggest connected component
-        components = mesh.split(only_watertight=False)
-        areas = np.array([c.area for c in components], dtype=np.float32)
-        mesh_clean = components[areas.argmax()]
+        #components = mesh.split(only_watertight=False)
+        #areas = np.array([c.area for c in components], dtype=np.float32)
+        #mesh_clean = components[areas.argmax()]
 
         mesh_folder = evals_folder_name
         utils.mkdir_ifnotexists(mesh_folder)
-        mesh_clean.export('{0}/scan{1}.ply'.format(mesh_folder, scan_id), 'ply')
+        mesh.export('{0}/scan{1}.ply'.format(mesh_folder, scan_id), 'ply')
 
     if eval_rendering:
         images_dir = '{0}/rendering'.format(evals_folder_name)
