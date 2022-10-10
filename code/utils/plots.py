@@ -144,7 +144,10 @@ def get_surface_sliding(path, epoch, sdf, resolution=100, grid_boundary=[-2.0, 2
 
     combined = trimesh.util.concatenate(meshes)
 
-    combined.export('{0}/surface_{1}.ply'.format(path, epoch), 'ply')    
+    if return_mesh:
+        return combined
+    else:
+        combined.export('{0}/surface_{1}.ply'.format(path, epoch), 'ply')    
         
 def get_3D_scatter_trace(points, name='', size=3, caption=None):
     assert points.shape[1] == 3, "3d scatter plot input points are not correctely shaped "

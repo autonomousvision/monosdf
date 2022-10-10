@@ -150,6 +150,17 @@ Finally, we train monosdf as
 CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node 1 --nnodes=1 --node_rank=0 training/exp_runner.py --conf confs/nice_slam_grids.conf
 ```
 
+# Pretrained Models
+First download the pretrained models with
+```
+bash scripts/download_pretrained.sh
+```
+Then you can run inference with (DTU for example)
+```
+cd code
+python evaluation/eval.py --conf confs/dtu_mlp_3views.conf --checkpoint ../pretrained_models/dtu_3views_mlp/scan65.pth --scan_id 65 --resolution 512 --eval_rendering --evals_folder ../pretrained_results
+```
+
 # Acknowledgements
 This project is built upon [VolSDF](https://github.com/lioryariv/volsdf). We use pretrained [Omnidata](https://omnidata.vision) for monocular depth and normal extraction. Cuda implementation of Multi-Resolution hash encoding is based on [torch-ngp](https://github.com/ashawkey/torch-ngp). Evaluation scripts for DTU, Replica, and ScanNet are taken from [DTUeval-python](https://github.com/jzhangbs/DTUeval-python), [Nice-SLAM](https://github.com/cvg/nice-slam) and [manhattan-sdf](https://github.com/zju3dv/manhattan_sdf) respectively. We thank all the authors for their great work and repos. 
 

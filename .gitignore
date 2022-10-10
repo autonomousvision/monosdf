@@ -159,3 +159,5 @@ uploadtnt_*/
 *.csv
 dtu_eval/Offical_DTU_Dataset/
 media/
+pretrained_models/
+meshes/
