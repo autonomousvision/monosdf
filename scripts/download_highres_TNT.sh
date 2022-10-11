@@ -2,5 +2,5 @@
 cd data
 
 wget https://s3.eu-central-1.amazonaws.com/avg-projects/monosdf/data/highresTNT.tar
-tar -xf hihgresTNT.tar
-rm -rf hihgresTNT.tar
+tar -xf highresTNT.tar
+rm -rf highresTNT.tar
