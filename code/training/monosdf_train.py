@@ -285,7 +285,8 @@ class MonoSDFTrainRunner():
                 self.train_dataset.change_sampling_idx(self.num_pixels)
                 self.scheduler.step()
 
-        self.save_checkpoints(epoch)
+        if self.GPU_INDEX == 0:
+            self.save_checkpoints(epoch)
 
         
     def get_plot_data(self, model_input, model_outputs, pose, rgb_gt, normal_gt, depth_gt):
