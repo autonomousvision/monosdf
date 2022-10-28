@@ -167,12 +167,12 @@ python scripts/extract_all_meshes_from_pretrained_models.py
 ```
 
 # High-resolution Cues
-Here we privode script to generate high-resolution cues, and training with hihg-resolutin cues. Please refer to our supplymentary for more details.
+Here we privode script to generate high-resolution cues, and training with high-resolution cues. Please refer to our supplementary for more details.
 
-First you need to download the Tanks and Temples dataset from [here](https://drive.google.com/file/d/1YArOJaX9WVLJh4757uE8AEREYkgszrCo/view) and unzip it to ```data/tanksandtemples```. Then you can run the script to creat overlapped patches 
+First you need to download the Tanks and Temples dataset from [here](https://drive.google.com/file/d/1YArOJaX9WVLJh4757uE8AEREYkgszrCo/view) and unzip it to ```data/tanksandtemples```. Then you can run the script to create overlapped patches 
 ```
 cd preprocess
-python generate_high_res_map.py --mode create_pathces
+python generate_high_res_map.py --mode create_patches
 ```
 
 and run the Omnidata model to predict monocular cues for each patch 
@@ -192,7 +192,7 @@ Now you can train the model with
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8 python -m torch.distributed.launch --nproc_per_node 8 --nnodes=1 --node_rank=0 training/exp_runner.py --conf confs/tnt_highres_grids_courtroom.conf
 ```
 
-Please note that the script for generating hihg-resolution cues only works for Tanks and Temples dataset. You need to adapt it if you want to apply to other dataset.
+Please note that the script for generating high-resolution cues only works for the Tanks and Temples dataset. You need to adapt it if you want to apply to other dataset.
 
 # Acknowledgements
 This project is built upon [VolSDF](https://github.com/lioryariv/volsdf). We use pretrained [Omnidata](https://omnidata.vision) for monocular depth and normal extraction. Cuda implementation of Multi-Resolution hash encoding is based on [torch-ngp](https://github.com/ashawkey/torch-ngp). Evaluation scripts for DTU, Replica, and ScanNet are taken from [DTUeval-python](https://github.com/jzhangbs/DTUeval-python), [Nice-SLAM](https://github.com/cvg/nice-slam) and [manhattan-sdf](https://github.com/zju3dv/manhattan_sdf) respectively. We thank all the authors for their great work and repos. 
