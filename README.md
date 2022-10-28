@@ -184,7 +184,7 @@ This step will take a long time (~2 hours) since there are many patches and the 
 
 Then run the script again to merge the output of Omnidata.
 ```
-python generate_high_res_map.py --mode merge_pathces
+python generate_high_res_map.py --mode merge_patches
 ```
 
 Now you can train the model with

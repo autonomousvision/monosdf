@@ -188,7 +188,7 @@ scenes = ['Courtroom']
 out_path_prefix = "./highres_tmp"
 
 # output folder for hihg-resolution cues 
-out_path_for_training = '../data/highresTNT_test/'
+out_path_for_training = '../data/highresTNT/'
 out_scan_id = 1
 
 
