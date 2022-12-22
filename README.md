@@ -14,7 +14,7 @@
 
   </p>
   <h2 align="center">NeurIPS 2022</h2>
-  <h3 align="center"><a href="https://arxiv.org/abs/2206.00665">Paper</a> | <a href="https://niujinshuchong.github.io/monosdf/">Project Page</a></h3>
+  <h3 align="center"><a href="https://arxiv.org/abs/2206.00665">Paper</a> | <a href="https://niujinshuchong.github.io/monosdf/">Project Page</a> | <a href="https://autonomousvision.github.io/sdfstudio/">SDFStudio</a> </h3>
   <div align="center"></div>
 </p>
 
@@ -28,6 +28,9 @@
 We demonstrate that state-of-the-art depth and normal cues extracted from monocular images are complementary to reconstruction cues and hence significantly improve the performance of implicit surface reconstruction methods. 
 </p>
 <br>
+
+# Update
+MonoSDF is integrated to [SDFStudio](https://github.com/autonomousvision/sdfstudio), where monocular depth and normal cues can be applied to [UniSurf](https://github.com/autonomousvision/unisurf/tree/main/model) and [NeuS](https://github.com/Totoro97/NeuS/tree/main/models). Please check it out.
 
 # Setup
 
