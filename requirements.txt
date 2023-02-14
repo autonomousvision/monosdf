@@ -1,5 +1,5 @@
 trimesh
-pyhocon
+pyhocon==0.3.59
 tqdm
 scikit-image
 matplotlib
