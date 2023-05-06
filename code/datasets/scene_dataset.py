@@ -12,6 +12,7 @@ from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
 import torch.nn.functional as NF
+import torchvision.transforms.functional as TF
 
 class SceneDataset(torch.utils.data.Dataset):
 
@@ -141,7 +142,7 @@ class SceneDatasetDN(torch.utils.data.Dataset):
                  num_views=-1
                  ):
 
-        self.instance_dir = os.path.join('../data', data_dir, f'(scan_id)')
+        self.instance_dir = os.path.join('../data', data_dir, f'{scan_id}')
 
         self.total_pixels = img_res[0] * img_res[1]
         self.img_res = img_res
@@ -159,7 +160,7 @@ class SceneDatasetDN(torch.utils.data.Dataset):
             return data_paths
     
         image_dir = Path('{0}/images'.format(self.instance_dir))
-        image_paths = [i for i in sorted(image_dir.iterdir()) if (i.name[:7] is not 'dynamic')]
+        image_paths = [i for i in sorted(image_dir.iterdir()) if (i.name[:7] != 'dynamic')]
 
         depth_dir = Path('{0}/depths'.format(self.instance_dir))
         depth_paths = sorted(depth_dir.iterdir())
@@ -227,19 +228,18 @@ class SceneDatasetDN(torch.utils.data.Dataset):
 
         for dpath, npath in zip(depth_paths, normal_paths):
             with Image.open(npath) as img:
-                normal = F.to_tensor(img)
+                normal = TF.to_tensor(img)
             normal = normal * 2 - 1
             normal = NF.normalize(normal, p=2, dim=0)
             normal = normal.permute(1, 2, 0).view(-1, 3)
-            normal = normal * 2. - 1.
-            self.normal_images.append(torch.from_numpy(normal).float())            
+            # normal = normal * 2. - 1.
+            self.normal_images.append(normal)            
 
             depth = cv2.imread(str(dpath), cv2.IMREAD_UNCHANGED)
             depth = torch.from_numpy(depth).unsqueeze(0).float()
             depth = depth.view(-1, 1)
-
+            self.depth_images.append(depth.reshape(-1, 1))
             # depth = np.load(dpath)
-            # self.depth_images.append(torch.from_numpy(depth.reshape(-1, 1)).float())
         
             # normal = np.load(npath)
             # normal = normal.reshape(3, -1).transpose(1, 0)

@@ -26,7 +26,7 @@ if __name__ == '__main__':
     parser.add_argument('--scan_id', type=str, default=None, help='If set, taken to be the scan name.')
     parser.add_argument('--cancel_vis', default=False, action="store_true",
                         help='If set, cancel visualization in intermediate epochs.')
-    parser.add_argument("--local_rank", type=int, required=True, help='local rank for DistributedDataParallel')
+    parser.add_argument("--local_rank", type=int, default=0, help='local rank for DistributedDataParallel')
 
     opt = parser.parse_args()
 
