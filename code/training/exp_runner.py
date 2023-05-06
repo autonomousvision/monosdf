@@ -23,7 +23,7 @@ if __name__ == '__main__':
                         help='The timestamp of the run to be used in case of continuing from a previous run.')
     parser.add_argument('--checkpoint', default='latest', type=str,
                         help='The checkpoint epoch of the run to be used in case of continuing from a previous run.')
-    parser.add_argument('--scan_id', type=int, default=-1, help='If set, taken to be the scan id.')
+    parser.add_argument('--scan_id', type=str, default=None, help='If set, taken to be the scan name.')
     parser.add_argument('--cancel_vis', default=False, action="store_true",
                         help='If set, cancel visualization in intermediate epochs.')
     parser.add_argument("--local_rank", type=int, required=True, help='local rank for DistributedDataParallel')

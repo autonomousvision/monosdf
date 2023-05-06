@@ -1,5 +1,4 @@
 code/run_logs
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -137,7 +136,8 @@ data/DTU
 data/BlendedMVS
 data/Replica
 data/tnt_advanced
-data/
+data/*
+data
 
 code/tmp_build
 
